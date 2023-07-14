@@ -5,6 +5,7 @@ import 'package:location/location.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meteo/utils/my_api.dart';
 import 'package:meteo/utils/my_geo_location.dart';
 import 'package:meteo/widgets/dialog_android.dart';
 import 'package:meteo/widgets/custom_text.dart';
@@ -25,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late List<String> villes = [];
   String key = "villes";
   String villeChoisie = "";
-  var position;
+  var  position;
   late Coordinates cityCordsChosen=Coordinates(latitude: null, longitude: null);
   @override
   void initState() {
@@ -53,6 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 longitude: newPosition.longitude))
             .then((value) => adress=value);
         //print(adress);
+        Api().myApi(
+            locationData,
+            Coordinates(
+                longitude: newPosition.longitude,
+                latitude: newPosition.latitude,
+            ),
+          context
+        );
       });
     });
   }
@@ -61,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if(villeChoisie != "") {
         locationToCoordinates(villeChoisie).then((value) =>cityCordsChosen=value);
         print("fu $cityCordsChosen");
+      Api().myApi(location.getLocation() as LocationData, cityCordsChosen,context);
     }
   }
 
