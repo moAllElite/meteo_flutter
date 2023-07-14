@@ -177,8 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               onTap: () {
                                 setState(() {
                                   villeChoisie = ville;
-                                  coordinatesFromCity();
                                   Navigator.pop(context);
+                                  coordinatesFromCity();
                                 });
                               },
                             );
