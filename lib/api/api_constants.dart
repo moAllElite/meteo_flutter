@@ -4,13 +4,7 @@ import 'package:location/location.dart';
 import 'package:meteo/utils/my_key.dart';
 
 class ApiConstants {
-  static const String baseScheme = 'https://';
-  static const String baseUrlDomain = 'api.openweathermap.org';
-  static const String imagesPath = "/img/w/";
-  static const String imagesUrl = baseScheme + baseUrlDomain + imagesPath;
-  static const String weatherPath = "/data/2.5/weather";
-  static const String forecastPath = "/data/2.5/forecast";
-  static const String apiId = MyKey.key;
+
   Future<void> myApi (LocationData locationData, Coordinates coordinatesCity,context)async{
     double?  lat;
     double? long;
@@ -29,9 +23,9 @@ class ApiConstants {
       const String baseAPI="api.openweathermap.org/data/2.5/weather?";
       String coordsString="lat=$lat&long=$long";
       String units="&units==metrics";
-      String bo=coordsString + theKey +units;
-      //String totalString = baseAPI + coordsString  + theKey + units ;
-      String way=baseUrlDomain + weatherPath + coordsString +apiId +units;
+
+      String totalString = baseAPI + coordsString  + theKey + units ;
+     // String way=baseUrlDomain + weatherPath + coordsString +apiId +units;
     }
   }
 }
